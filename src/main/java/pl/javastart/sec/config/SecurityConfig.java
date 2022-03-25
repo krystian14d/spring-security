@@ -19,11 +19,4 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin(login -> login.loginPage("/login").permitAll());
     }
 
-    @Bean
-    public UserDetailsService customUserDetailsService() {
-        User.UserBuilder userBuilder = User.builder();
-        UserDetails admin = userBuilder.username("admin").password("{noop}admin").roles("ADMIN").build();
-        UserDetails user1 = userBuilder.username("user").password("{noop}user").roles("USER").build();
-        return new InMemoryUserDetailsManager(admin, user1);
-    }
 }
